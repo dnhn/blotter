@@ -7,7 +7,11 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bradley/blotter.git"
+    "url": "git+https://github.com/dnhn/blotter.git"
+  },
+  "homepage": "https://github.com/dnhn/blotter#readme",
+  "bugs": {
+    "url": "https://github.com/dnhn/blotter/issues"
   },
   "exports": {
     ".": {
