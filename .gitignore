@@ -1,2 +1,7 @@
 node_modules/
+dist/
+coverage/
+tests/browser/__screenshots__/
+.vitest-attachments/
+examples/dist/
 .DS_Store
