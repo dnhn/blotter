@@ -2,7 +2,7 @@
 
 A JavaScript API for drawing unconventional text effects on the web — GLSL-backed, batched into a single WebGL draw call, output to plain per-text canvases.
 
-This is a modern TypeScript rewrite of [bradley/Blotter](https://github.com/bradley/Blotter): ESM-first, typed, tree-shakeable, with `three` as a peer dependency. The rendering architecture is unchanged; the API is new (see [Migrating](#migrating-from-blotter-01)).
+This is a modern TypeScript rewrite of [bradley/Blotter](https://github.com/bradley/Blotter): ESM-first, typed, tree-shakeable, with `three` as a peer dependency. The rendering architecture is unchanged; the API is new (see [Migrating](#migrating-from-blotterjs)).
 
 ## How it works
 
@@ -49,7 +49,7 @@ material.uniforms.uOffset.value = 0.1;
 Per-text overrides go through the text's render scope:
 
 ```ts
-const scope = blotter.forText(text);
+const scope = blotter.forText(text)!;
 scope.material.uniforms.uOffset.value = 0.2; // this text only
 ```
 
