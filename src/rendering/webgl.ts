@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 
 let renderer: THREE.WebGLRenderer | null = null;
 
@@ -19,10 +19,10 @@ export function sharedRenderer(): THREE.WebGLRenderer {
 
 export function isWebGLSupported(): boolean {
   try {
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     return Boolean(
       window.WebGLRenderingContext &&
-        (canvas.getContext("webgl2") || canvas.getContext("webgl")),
+        (canvas.getContext('webgl2') || canvas.getContext('webgl')),
     );
   } catch {
     return false;

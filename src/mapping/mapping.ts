@@ -1,7 +1,7 @@
-import { BlotterError } from "../core/errors";
-import type { Text } from "../text";
-import { createHiDpiCanvas } from "../utils/canvas";
-import { lineHeightPixels } from "../utils/text-measurement";
+import { BlotterError } from '../core/errors';
+import type { Text } from '../text';
+import { createHiDpiCanvas } from '../utils/canvas';
+import { lineHeightPixels } from '../utils/text-measurement';
 
 export interface TextBounds {
   x: number;
@@ -69,12 +69,12 @@ export class Mapping {
    */
   toCanvas(): HTMLCanvasElement {
     const canvas = createHiDpiCanvas(this._width, this._height, this._ratio);
-    const ctx = canvas.getContext("2d", { alpha: false });
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) {
-      throw new BlotterError("Mapping", "toCanvas", "2d context unavailable");
+      throw new BlotterError('Mapping', 'toCanvas', '2d context unavailable');
     }
 
-    ctx.textBaseline = "middle";
+    ctx.textBaseline = 'middle';
 
     for (const text of this.texts) {
       const bounds = this.textBounds[text.id];
@@ -95,9 +95,9 @@ export class Mapping {
     }
 
     const flipped = createHiDpiCanvas(this._width, this._height, this._ratio);
-    const flippedCtx = flipped.getContext("2d", { alpha: false });
+    const flippedCtx = flipped.getContext('2d', { alpha: false });
     if (!flippedCtx) {
-      throw new BlotterError("Mapping", "toCanvas", "2d context unavailable");
+      throw new BlotterError('Mapping', 'toCanvas', '2d context unavailable');
     }
     flippedCtx.save();
     flippedCtx.scale(1, -1);

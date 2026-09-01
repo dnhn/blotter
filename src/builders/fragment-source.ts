@@ -2,8 +2,8 @@ import {
   glslDataType,
   glslSwizzle,
   type UniformDescriptor,
-} from "../core/uniforms";
-import { blending } from "../shaders";
+} from '../core/uniforms';
+import { blending } from '../shaders';
 
 export interface FragmentUniformEntry {
   descriptor: UniformDescriptor;
@@ -44,12 +44,12 @@ export function buildFragmentSource(args: {
   // Legacy formula: half of one float within the RGBA data array
   // (data.length = textureWidth * 4), not half a texel.
   const halfPixel =
-    textureWidth > 0 ? (1 / (textureWidth * 4) / 2).toFixed(20) : "0.0";
+    textureWidth > 0 ? (1 / (textureWidth * 4) / 2).toFixed(20) : '0.0';
   const textureWidthStr = textureWidth.toFixed(1);
   const textsLengthStr = textsLength.toFixed(1);
 
-  let publicUniformDeclarations = "";
-  let publicUniformDefinitions = "";
+  let publicUniformDeclarations = '';
+  let publicUniformDefinitions = '';
 
   for (const [uniformName, entry] of Object.entries(userUniforms)) {
     const swizzle = glslSwizzle(entry.descriptor.type);
@@ -68,17 +68,17 @@ export function buildFragmentSource(args: {
     blending,
 
     // Private blotter defined uniforms.
-    "uniform sampler2D _uSampler;",
-    "uniform vec2 _uCanvasResolution;",
-    "uniform sampler2D _uTextIndicesTexture;",
-    "uniform sampler2D _uTextBoundsTexture;",
+    'uniform sampler2D _uSampler;',
+    'uniform vec2 _uCanvasResolution;',
+    'uniform sampler2D _uTextIndicesTexture;',
+    'uniform sampler2D _uTextBoundsTexture;',
 
     // Private texCoord and bounds information.
-    "varying vec2 _vTexCoord;",
-    "vec4 _textBounds;",
+    'varying vec2 _vTexCoord;',
+    'vec4 _textBounds;',
 
     // Private storage for user defined and default uniform values.
-    "uniform sampler2D _userUniformsTexture;",
+    'uniform sampler2D _userUniformsTexture;',
 
     // Public versions of user defined and default uniform declarations.
     publicUniformDeclarations,
@@ -106,28 +106,28 @@ void mainImage(out vec4 mainImage, in vec2 fragCoord);
 
     mainImage,
 
-    "void main(void) {",
+    'void main(void) {',
 
     //  Retrieve text index and text alpha for the bounds containing this texel.
-    "   vec4 textIndexData = texture2D(_uTextIndicesTexture, _vTexCoord);",
-    "   float textIndex = textIndexData.r;",
-    "   float textAlpha = textIndexData.a;",
+    '   vec4 textIndexData = texture2D(_uTextIndicesTexture, _vTexCoord);',
+    '   float textIndex = textIndexData.r;',
+    '   float textAlpha = textIndexData.a;',
 
     //  Make bounds for the current text globally visible.
-    "   _textBounds = texture2D(_uTextBoundsTexture, vec2(textIndex, 0.5));",
+    '   _textBounds = texture2D(_uTextBoundsTexture, vec2(textIndex, 0.5));',
 
     //  Set "uniform" values visible to user.
     publicUniformDefinitions,
-    "   uResolution = _textBounds.zw;",
+    '   uResolution = _textBounds.zw;',
 
     //  Set fragment coordinate in respect to position within text bounds.
-    "   vec2 fragCoord = gl_FragCoord.xy - _textBounds.xy;",
-    "   vec4 outColor;",
-    "   mainImage(outColor, fragCoord);",
+    '   vec2 fragCoord = gl_FragCoord.xy - _textBounds.xy;',
+    '   vec4 outColor;',
+    '   mainImage(outColor, fragCoord);',
 
     //  Zero alpha for texels outside every text area.
-    "   outColor.a = outColor.a * textAlpha;",
-    "   gl_FragColor = outColor;",
-    "}",
-  ].join("\n");
+    '   outColor.a = outColor.a * textAlpha;',
+    '   gl_FragColor = outColor;',
+    '}',
+  ].join('\n');
 }

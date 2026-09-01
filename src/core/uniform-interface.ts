@@ -1,11 +1,11 @@
-import { logError } from "./errors";
-import { Emitter } from "./event-emitter";
+import { logError } from './errors';
+import { Emitter } from './event-emitter';
 import {
   isValidUniformValue,
   type UniformDescriptor,
   type UniformType,
   type UniformValueMap,
-} from "./uniforms";
+} from './uniforms';
 
 /**
  * Live handle for one uniform: validated value writes emit "update" so
@@ -22,7 +22,7 @@ export class UniformInterface<
 
   constructor(
     descriptor: { type: K; value: UniformValueMap[K] },
-    context = "blotter",
+    context = 'blotter',
   ) {
     super();
     this.type = descriptor.type;
@@ -44,7 +44,7 @@ export class UniformInterface<
       return;
     }
     this._value = value;
-    this.emit("update");
+    this.emit('update');
   }
 
   toDescriptor(): UniformDescriptor {

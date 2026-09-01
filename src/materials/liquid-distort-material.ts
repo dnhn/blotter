@@ -1,5 +1,5 @@
-import { Material } from "../material";
-import { noise3d } from "../shaders";
+import { Material } from '../material';
+import { noise3d } from '../shaders';
 
 const mainImage = /* glsl */ `
 ${noise3d}
@@ -18,9 +18,9 @@ export class LiquidDistortMaterial extends Material {
     super({
       mainImage,
       uniforms: {
-        uSpeed: { type: "1f", value: 1 },
-        uVolatility: { type: "1f", value: 0.15 },
-        uSeed: { type: "1f", value: 0.1 },
+        uSpeed: { type: '1f', value: 1 },
+        uVolatility: { type: '1f', value: 0.15 },
+        uSeed: { type: '1f', value: 0.1 },
       },
     });
   }

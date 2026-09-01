@@ -1,22 +1,22 @@
-import { describe, expect, it } from "vitest";
-import { Blotter, type Material, Text } from "../../src/index";
+import { describe, expect, it } from 'vitest';
+import { Blotter, type Material, Text } from '../../src/index';
 import {
   ChannelSplitMaterial,
   FliesMaterial,
   LiquidDistortMaterial,
   RollingDistortMaterial,
   SlidingDoorMaterial,
-} from "../../src/materials";
+} from '../../src/materials';
 
 // One frame per material through the real WebGL pipeline: a GLSL compile
 // error in a ported shader surfaces here as a blank canvas.
 const CASES: [string, () => Material][] = [
-  ["ChannelSplitMaterial", () => new ChannelSplitMaterial()],
-  ["FliesMaterial", () => new FliesMaterial()],
-  ["LiquidDistortMaterial", () => new LiquidDistortMaterial()],
-  ["RollingDistortMaterial", () => new RollingDistortMaterial()],
+  ['ChannelSplitMaterial', () => new ChannelSplitMaterial()],
+  ['FliesMaterial', () => new FliesMaterial()],
+  ['LiquidDistortMaterial', () => new LiquidDistortMaterial()],
+  ['RollingDistortMaterial', () => new RollingDistortMaterial()],
   [
-    "SlidingDoorMaterial",
+    'SlidingDoorMaterial',
     () => {
       const material = new SlidingDoorMaterial();
       // At t~0 the door animation legitimately shifts the text out of
@@ -29,27 +29,27 @@ const CASES: [string, () => Material][] = [
   ],
 ];
 
-describe("effect materials render", () => {
+describe('effect materials render', () => {
   it.each(CASES)(
-    "%s renders non-transparent pixels",
+    '%s renders non-transparent pixels',
     async (_name, createMaterial) => {
-      const container = document.createElement("div");
+      const container = document.createElement('div');
       document.body.appendChild(container);
       try {
-        const text = new Text("Hello", {
-          family: "monospace",
+        const text = new Text('Hello', {
+          family: 'monospace',
           size: 48,
-          fill: "#ff0000",
+          fill: '#ff0000',
         });
         const blotter = new Blotter(createMaterial(), { texts: text });
         await blotter.ready;
 
         const scope = blotter.forText(text);
-        if (!scope) throw new Error("scope missing");
+        if (!scope) throw new Error('scope missing');
         scope.appendTo(container);
 
         await new Promise<void>((resolve) => {
-          const unsubscribe = scope.on("render", (frameCount) => {
+          const unsubscribe = scope.on('render', (frameCount) => {
             if (frameCount >= 2) {
               unsubscribe();
               resolve();
@@ -57,8 +57,8 @@ describe("effect materials render", () => {
           });
         });
 
-        const ctx = scope.domElement.getContext("2d");
-        if (!ctx) throw new Error("no 2d context");
+        const ctx = scope.domElement.getContext('2d');
+        if (!ctx) throw new Error('no 2d context');
         const image = ctx.getImageData(
           0,
           0,

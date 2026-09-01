@@ -1,24 +1,24 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 import {
   ensureHasRequiredDefaultUniforms,
   extractValidUniforms,
   type UniformMap,
-} from "../core/uniforms";
-import type { Mapping } from "../mapping/mapping";
+} from '../core/uniforms';
+import type { Mapping } from '../mapping/mapping';
 import {
   MappingMaterial,
   type UserUniformDataTextureObjects,
   type UserUniformEntry,
-} from "../mapping/mapping-material";
-import type { Material } from "../material";
-import { buildBoundsDataTexture } from "./bounds-data-texture";
+} from '../mapping/mapping-material';
+import type { Material } from '../material';
+import { buildBoundsDataTexture } from './bounds-data-texture';
 import {
   buildFragmentSource,
   buildVertexSource,
   type FragmentUniformEntry,
-} from "./fragment-source";
-import { buildIndicesDataTexture } from "./indices-data-texture";
-import { buildTextTexture } from "./text-texture";
+} from './fragment-source';
+import { buildIndicesDataTexture } from './indices-data-texture';
+import { buildTextTexture } from './text-texture';
 
 // One RGBA texel per text per uniform, all in a single 1-row float texture.
 // Starts zeroed; MappingMaterial's uniform interfaces write the initial
@@ -61,8 +61,8 @@ export async function buildMappingMaterial(
   }
   ensureHasRequiredDefaultUniforms(
     descriptors,
-    "blotter",
-    "buildMappingMaterial",
+    'blotter',
+    'buildMappingMaterial',
   );
   const validUniforms = extractValidUniforms(descriptors);
 

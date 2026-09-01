@@ -1,5 +1,5 @@
-import { Material } from "../material";
-import { lineMath, noise, pi } from "../shaders";
+import { Material } from '../material';
+import { lineMath, noise, pi } from '../shaders';
 
 const mainImage = /* glsl */ `
 ${pi}
@@ -104,14 +104,14 @@ export class RollingDistortMaterial extends Material {
     super({
       mainImage,
       uniforms: {
-        uSineDistortSpread: { type: "1f", value: 0.05 },
-        uSineDistortCycleCount: { type: "1f", value: 2 },
-        uSineDistortAmplitude: { type: "1f", value: 0.25 },
-        uNoiseDistortVolatility: { type: "1f", value: 20 },
-        uNoiseDistortAmplitude: { type: "1f", value: 0.01 },
-        uDistortPosition: { type: "2f", value: [0.5, 0.5] },
-        uRotation: { type: "1f", value: 170 },
-        uSpeed: { type: "1f", value: 0.08 },
+        uSineDistortSpread: { type: '1f', value: 0.05 },
+        uSineDistortCycleCount: { type: '1f', value: 2 },
+        uSineDistortAmplitude: { type: '1f', value: 0.25 },
+        uNoiseDistortVolatility: { type: '1f', value: 20 },
+        uNoiseDistortAmplitude: { type: '1f', value: 0.01 },
+        uDistortPosition: { type: '2f', value: [0.5, 0.5] },
+        uRotation: { type: '1f', value: 170 },
+        uSpeed: { type: '1f', value: 0.08 },
       },
     });
   }

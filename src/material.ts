@@ -1,18 +1,18 @@
-import { Emitter } from "./core/event-emitter";
+import { Emitter } from './core/event-emitter';
 import {
   UniformInterface,
   type UniformInterfaceMap,
-} from "./core/uniform-interface";
+} from './core/uniform-interface';
 import {
   createDefaultUniforms,
   extractValidUniforms,
   type UniformMap,
-} from "./core/uniforms";
-import { pixelRatio } from "./utils/canvas";
+} from './core/uniforms';
+import { pixelRatio } from './utils/canvas';
 
 export type MaterialEvents = {
   update: [];
-  "update:uniform": [uniformName: string];
+  'update:uniform': [uniformName: string];
 };
 
 export interface MaterialOptions {
@@ -64,9 +64,9 @@ export class Material extends Emitter<MaterialEvents> {
 
     const interfaces: UniformInterfaceMap = {};
     for (const [name, descriptor] of Object.entries(valid)) {
-      const uniformInterface = new UniformInterface(descriptor, "Material");
+      const uniformInterface = new UniformInterface(descriptor, 'Material');
       this.uniformUnsubscribers.push(
-        uniformInterface.on("update", () => this.emit("update:uniform", name)),
+        uniformInterface.on('update', () => this.emit('update:uniform', name)),
       );
       interfaces[name] = uniformInterface;
     }
@@ -76,6 +76,6 @@ export class Material extends Emitter<MaterialEvents> {
   // Notify observers that the material changed structurally (e.g. after
   // assigning a new mainImage) so they rebuild their shader.
   update(): void {
-    this.emit("update");
+    this.emit('update');
   }
 }

@@ -1,12 +1,12 @@
-import { describe, expect, it } from "vitest";
-import { boundsDataForMapping } from "../../src/builders/bounds-data-texture";
-import { indicesDataForMapping } from "../../src/builders/indices-data-texture";
-import { Mapping } from "../../src/mapping/mapping";
-import { Text } from "../../src/text";
+import { describe, expect, it } from 'vitest';
+import { boundsDataForMapping } from '../../src/builders/bounds-data-texture';
+import { indicesDataForMapping } from '../../src/builders/indices-data-texture';
+import { Mapping } from '../../src/mapping/mapping';
+import { Text } from '../../src/text';
 
 function makeMapping(): { mapping: Mapping; a: Text; b: Text } {
-  const a = new Text("A");
-  const b = new Text("B");
+  const a = new Text('A');
+  const b = new Text('B');
   // 100x100 atlas: a occupies the top strip (bottom-origin y 60..100),
   // b the bottom-left block (y 0..60, x 0..80).
   const mapping = new Mapping(
@@ -21,8 +21,8 @@ function makeMapping(): { mapping: Mapping; a: Text; b: Text } {
   return { mapping, a, b };
 }
 
-describe("boundsDataForMapping", () => {
-  it("packs one top-origin RGBA rect per text", () => {
+describe('boundsDataForMapping', () => {
+  it('packs one top-origin RGBA rect per text', () => {
     const { mapping } = makeMapping();
     const data = boundsDataForMapping(mapping);
 
@@ -33,7 +33,7 @@ describe("boundsDataForMapping", () => {
     expect([...data.slice(4, 8)]).toEqual([0, 40, 80, 60]);
   });
 
-  it("scales with mapping ratio", () => {
+  it('scales with mapping ratio', () => {
     const { mapping } = makeMapping();
     mapping.ratio = 2;
     const data = boundsDataForMapping(mapping);
@@ -41,8 +41,8 @@ describe("boundsDataForMapping", () => {
   });
 });
 
-describe("indicesDataForMapping", () => {
-  it("writes rows top-down with normalized text indices", () => {
+describe('indicesDataForMapping', () => {
+  it('writes rows top-down with normalized text indices', () => {
     const { mapping } = makeMapping();
     const width = 50;
     const height = 50;

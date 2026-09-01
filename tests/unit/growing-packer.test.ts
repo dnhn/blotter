@@ -1,11 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest';
 import {
   GrowingPacker,
   type PackerBlock,
-} from "../../src/utils/growing-packer";
+} from '../../src/utils/growing-packer';
 
-describe("GrowingPacker", () => {
-  it("packs a single block at origin", () => {
+describe('GrowingPacker', () => {
+  it('packs a single block at origin', () => {
     const packer = new GrowingPacker();
     const blocks: PackerBlock[] = [{ w: 100, h: 50 }];
     packer.fit(blocks);
@@ -13,7 +13,7 @@ describe("GrowingPacker", () => {
     expect(packer.root).toMatchObject({ w: 100, h: 50 });
   });
 
-  it("packs equal squares deterministically without overlap", () => {
+  it('packs equal squares deterministically without overlap', () => {
     const packer = new GrowingPacker();
     const blocks: PackerBlock[] = [
       { w: 100, h: 100 },
@@ -45,7 +45,7 @@ describe("GrowingPacker", () => {
     expect(packer.root.h).toBe(200);
   });
 
-  it("grows to fit sorted mixed sizes, all blocks placed", () => {
+  it('grows to fit sorted mixed sizes, all blocks placed', () => {
     const packer = new GrowingPacker();
     const blocks: PackerBlock[] = [
       { w: 120, h: 80 },
@@ -59,7 +59,7 @@ describe("GrowingPacker", () => {
     }
   });
 
-  it("cannot place a block wider and taller than the root", () => {
+  it('cannot place a block wider and taller than the root', () => {
     const packer = new GrowingPacker();
     const blocks: PackerBlock[] = [
       { w: 50, h: 50 },
@@ -70,7 +70,7 @@ describe("GrowingPacker", () => {
     expect(blocks[1]?.fit).toBeNull();
   });
 
-  it("handles empty input", () => {
+  it('handles empty input', () => {
     const packer = new GrowingPacker();
     packer.fit([]);
     expect(packer.root).toMatchObject({ w: 0, h: 0 });

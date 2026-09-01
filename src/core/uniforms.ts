@@ -1,16 +1,16 @@
-import { BlotterError, logError } from "./errors";
+import { BlotterError, logError } from './errors';
 
-export type UniformType = "1f" | "2f" | "3f" | "4f";
+export type UniformType = '1f' | '2f' | '3f' | '4f';
 
 export type Vec2 = [number, number];
 export type Vec3 = [number, number, number];
 export type Vec4 = [number, number, number, number];
 
 export interface UniformValueMap {
-  "1f": number;
-  "2f": Vec2;
-  "3f": Vec3;
-  "4f": Vec4;
+  '1f': number;
+  '2f': Vec2;
+  '3f': Vec3;
+  '4f': Vec4;
 }
 
 export type UniformDescriptor = {
@@ -19,24 +19,24 @@ export type UniformDescriptor = {
 
 export type UniformMap = Record<string, UniformDescriptor>;
 
-export const UNIFORM_TYPES: readonly UniformType[] = ["1f", "2f", "3f", "4f"];
+export const UNIFORM_TYPES: readonly UniformType[] = ['1f', '2f', '3f', '4f'];
 
 const COMPONENT_COUNTS: Record<UniformType, number> = {
-  "1f": 1,
-  "2f": 2,
-  "3f": 3,
-  "4f": 4,
+  '1f': 1,
+  '2f': 2,
+  '3f': 3,
+  '4f': 4,
 };
 
 function isFiniteNumber(value: unknown): value is number {
-  return typeof value === "number" && Number.isFinite(value);
+  return typeof value === 'number' && Number.isFinite(value);
 }
 
 export function isValidUniformValue<K extends UniformType>(
   type: K,
   value: unknown,
 ): value is UniformValueMap[K] {
-  if (type === "1f") return isFiniteNumber(value);
+  if (type === '1f') return isFiniteNumber(value);
   return (
     Array.isArray(value) &&
     value.length === COMPONENT_COUNTS[type] &&
@@ -46,29 +46,29 @@ export function isValidUniformValue<K extends UniformType>(
 
 export function glslDataType(
   type: UniformType,
-): "float" | "vec2" | "vec3" | "vec4" {
+): 'float' | 'vec2' | 'vec3' | 'vec4' {
   switch (type) {
-    case "1f":
-      return "float";
-    case "2f":
-      return "vec2";
-    case "3f":
-      return "vec3";
-    case "4f":
-      return "vec4";
+    case '1f':
+      return 'float';
+    case '2f':
+      return 'vec2';
+    case '3f':
+      return 'vec3';
+    case '4f':
+      return 'vec4';
   }
 }
 
-export function glslSwizzle(type: UniformType): "x" | "xy" | "xyz" | "xyzw" {
+export function glslSwizzle(type: UniformType): 'x' | 'xy' | 'xyz' | 'xyzw' {
   switch (type) {
-    case "1f":
-      return "x";
-    case "2f":
-      return "xy";
-    case "3f":
-      return "xyz";
-    case "4f":
-      return "xyzw";
+    case '1f':
+      return 'x';
+    case '2f':
+      return 'xy';
+    case '3f':
+      return 'xyz';
+    case '4f':
+      return 'xyzw';
   }
 }
 
@@ -81,16 +81,16 @@ export function extractValidUniforms(
   for (const [name, descriptor] of Object.entries(uniforms ?? {})) {
     if (!UNIFORM_TYPES.includes(descriptor.type)) {
       logError(
-        "blotter",
-        "extractValidUniforms",
-        `uniforms must be one of type: ${UNIFORM_TYPES.join(", ")}`,
+        'blotter',
+        'extractValidUniforms',
+        `uniforms must be one of type: ${UNIFORM_TYPES.join(', ')}`,
       );
       continue;
     }
     if (!isValidUniformValue(descriptor.type, descriptor.value)) {
       logError(
-        "blotter",
-        "extractValidUniforms",
+        'blotter',
+        'extractValidUniforms',
         `uniform value for ${name} is incorrect for type: ${descriptor.type}`,
       );
       continue;
@@ -107,20 +107,20 @@ export function extractValidUniforms(
 // module-level constant would force DOM access at import time.
 export function createDefaultUniforms(pixelRatio = 1): UniformMap {
   return {
-    uResolution: { type: "2f", value: [0, 0] },
-    uGlobalTime: { type: "1f", value: 0 },
-    uTimeDelta: { type: "1f", value: 0 },
-    uBlendColor: { type: "4f", value: [1, 1, 1, 1] },
-    uPixelRatio: { type: "1f", value: pixelRatio },
+    uResolution: { type: '2f', value: [0, 0] },
+    uGlobalTime: { type: '1f', value: 0 },
+    uTimeDelta: { type: '1f', value: 0 },
+    uBlendColor: { type: '4f', value: [1, 1, 1, 1] },
+    uPixelRatio: { type: '1f', value: pixelRatio },
   };
 }
 
 export const DEFAULT_UNIFORM_NAMES = [
-  "uResolution",
-  "uGlobalTime",
-  "uTimeDelta",
-  "uBlendColor",
-  "uPixelRatio",
+  'uResolution',
+  'uGlobalTime',
+  'uTimeDelta',
+  'uBlendColor',
+  'uPixelRatio',
 ] as const;
 
 export function hasRequiredDefaultUniforms(uniforms: UniformMap): boolean {
@@ -136,7 +136,7 @@ export function ensureHasRequiredDefaultUniforms(
     throw new BlotterError(
       domain,
       method,
-      "uniforms object is missing required default uniforms",
+      'uniforms object is missing required default uniforms',
     );
   }
 }

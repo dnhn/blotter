@@ -1,6 +1,6 @@
-import * as THREE from "three";
-import type { Mapping } from "../mapping/mapping";
-import { yieldToMain } from "../utils/scheduling";
+import * as THREE from 'three';
+import type { Mapping } from '../mapping/mapping';
+import { yieldToMain } from '../utils/scheduling';
 
 // Negative correlation between sample accuracy and generation speed; keep
 // around 0.5 (legacy guidance).

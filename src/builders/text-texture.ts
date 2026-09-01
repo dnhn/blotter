@@ -1,5 +1,5 @@
-import * as THREE from "three";
-import type { Mapping } from "../mapping/mapping";
+import * as THREE from 'three';
+import type { Mapping } from '../mapping/mapping';
 
 /**
  * Uploads the mapping's rendered (pre-flipped) canvas as a texture.

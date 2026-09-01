@@ -1,5 +1,5 @@
-import { Material } from "../material";
-import { pi } from "../shaders";
+import { Material } from '../material';
+import { pi } from '../shaders';
 
 const mainImage = /* glsl */ `
 ${pi}
@@ -61,11 +61,11 @@ export class SlidingDoorMaterial extends Material {
     super({
       mainImage,
       uniforms: {
-        uDivisions: { type: "1f", value: 5 },
-        uDivisionWidth: { type: "1f", value: 0.25 },
-        uAnimateHorizontal: { type: "1f", value: 0 },
-        uFlipAnimationDirection: { type: "1f", value: 0 },
-        uSpeed: { type: "1f", value: 0.2 },
+        uDivisions: { type: '1f', value: 5 },
+        uDivisionWidth: { type: '1f', value: 0.25 },
+        uAnimateHorizontal: { type: '1f', value: 0 },
+        uFlipAnimationDirection: { type: '1f', value: 0 },
+        uSpeed: { type: '1f', value: 0.2 },
       },
     });
   }

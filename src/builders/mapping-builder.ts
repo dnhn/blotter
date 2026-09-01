@@ -1,8 +1,8 @@
-import { Mapping, type TextBoundsMap } from "../mapping/mapping";
-import { filterTexts, type Text } from "../text";
-import { GrowingPacker, type PackerBlock } from "../utils/growing-packer";
-import { yieldToMain } from "../utils/scheduling";
-import { sizeForText } from "../utils/text-measurement";
+import { Mapping, type TextBoundsMap } from '../mapping/mapping';
+import { filterTexts, type Text } from '../text';
+import { GrowingPacker, type PackerBlock } from '../utils/growing-packer';
+import { yieldToMain } from '../utils/scheduling';
+import { sizeForText } from '../utils/text-measurement';
 
 interface SizedBlock extends PackerBlock {
   text: Text;

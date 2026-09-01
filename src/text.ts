@@ -1,10 +1,10 @@
-import { logWarning } from "./core/errors";
-import { Emitter } from "./core/event-emitter";
-import { createId } from "./utils/id";
+import { logWarning } from './core/errors';
+import { Emitter } from './core/event-emitter';
+import { createId } from './utils/id';
 import {
   ensurePropertyValues,
   type TextProperties,
-} from "./utils/text-measurement";
+} from './utils/text-measurement';
 
 export type TextEvents = { update: [] };
 
@@ -41,7 +41,7 @@ export class Text extends Emitter<TextEvents> {
   // Notify observers (a Blotter instance) that this text changed. Value and
   // properties writes call it automatically; call directly after bulk edits.
   update(): void {
-    this.emit("update");
+    this.emit('update');
   }
 }
 
@@ -52,7 +52,7 @@ export function filterTexts(texts: Text | Text[] | undefined): Text[] {
   return array.filter((text) => {
     const isText = text instanceof Text;
     if (!isText) {
-      logWarning("blotter", "filterTexts", "object must be instance of Text");
+      logWarning('blotter', 'filterTexts', 'object must be instance of Text');
     }
     return isText;
   });

@@ -1,12 +1,12 @@
-import type * as THREE from "three";
+import type * as THREE from 'three';
 import {
   UniformInterface,
   type UniformInterfaceMap,
-} from "../core/uniform-interface";
-import type { UniformDescriptor } from "../core/uniforms";
-import type { Material } from "../material";
-import type { Text } from "../text";
-import type { Mapping, TextBounds } from "./mapping";
+} from '../core/uniform-interface';
+import type { UniformDescriptor } from '../core/uniforms';
+import type { Material } from '../material';
+import type { Text } from '../text';
+import type { Mapping, TextBounds } from './mapping';
 
 export interface UserUniformEntry {
   descriptor: UniformDescriptor;
@@ -27,7 +27,7 @@ function setValueAtIndex(
 ): void {
   const base = 4 * i;
   const value =
-    descriptor.type === "1f" ? [descriptor.value] : descriptor.value;
+    descriptor.type === '1f' ? [descriptor.value] : descriptor.value;
   data[base] = value[0] ?? 0;
   data[base + 1] = value[1] ?? 0;
   data[base + 2] = value[2] ?? 0;
@@ -66,9 +66,9 @@ export class MappingMaterial {
         const uniformIndex = entry.position + textIndex;
         const uniformInterface = new UniformInterface(
           entry.descriptor,
-          "MappingMaterial",
+          'MappingMaterial',
         );
-        uniformInterface.on("update", () => {
+        uniformInterface.on('update', () => {
           setValueAtIndex(data, uniformIndex, uniformInterface.toDescriptor());
           texture.needsUpdate = true;
         });
@@ -83,9 +83,9 @@ export class MappingMaterial {
     for (const [uniformName, entry] of Object.entries(userUniforms)) {
       const uniformInterface = new UniformInterface(
         entry.descriptor,
-        "MappingMaterial",
+        'MappingMaterial',
       );
-      uniformInterface.on("update", () => {
+      uniformInterface.on('update', () => {
         for (const text of mapping.texts) {
           const textInterface =
             this.textUniformInterface[text.id]?.[uniformName];

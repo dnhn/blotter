@@ -1,6 +1,6 @@
-import * as THREE from "three";
-import type { Mapping } from "../mapping/mapping";
-import { yieldToMain } from "../utils/scheduling";
+import * as THREE from 'three';
+import type { Mapping } from '../mapping/mapping';
+import { yieldToMain } from '../utils/scheduling';
 
 // One RGBA texel per text: the (x, y, w, h) of its atlas rectangle, with y
 // converted to top-origin to match gl_FragCoord-derived lookups.

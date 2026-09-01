@@ -1,6 +1,6 @@
-import * as THREE from "three";
-import { Emitter } from "../core/event-emitter";
-import { sharedRenderer } from "./webgl";
+import * as THREE from 'three';
+import { Emitter } from '../core/event-emitter';
+import { sharedRenderer } from './webgl';
 
 export type RendererEvents = { render: [] };
 
@@ -110,7 +110,7 @@ export class Renderer extends Emitter<RendererEvents> {
     );
     gl.setRenderTarget(null);
 
-    this.emit("render");
+    this.emit('render');
 
     this.animationFrame = requestAnimationFrame(this.loop);
   };

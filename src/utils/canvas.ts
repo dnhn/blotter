@@ -6,7 +6,7 @@ export interface CanvasOptions {
 }
 
 export function pixelRatio(): number {
-  return (typeof window !== "undefined" && window.devicePixelRatio) || 1;
+  return (typeof window !== 'undefined' && window.devicePixelRatio) || 1;
 }
 
 function applyCanvasOptions(
@@ -23,7 +23,7 @@ export function createCanvas(
   height: number,
   options: CanvasOptions = {},
 ): HTMLCanvasElement {
-  const canvas = document.createElement("canvas");
+  const canvas = document.createElement('canvas');
   applyCanvasOptions(canvas, options);
   canvas.width = width;
   canvas.height = height;
@@ -36,7 +36,7 @@ export function createHiDpiCanvas(
   ratio = pixelRatio(),
   options: CanvasOptions = {},
 ): HTMLCanvasElement {
-  const canvas = document.createElement("canvas");
+  const canvas = document.createElement('canvas');
   applyCanvasOptions(canvas, options);
   updateCanvasSize(canvas, width, height, ratio);
   return canvas;
@@ -52,7 +52,7 @@ export function updateCanvasSize(
   canvas.height = height * ratio;
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
-  canvas.getContext("2d")?.setTransform(ratio, 0, 0, ratio, 0, 0);
+  canvas.getContext('2d')?.setTransform(ratio, 0, 0, ratio, 0, 0);
 }
 
 export interface MousePosition {

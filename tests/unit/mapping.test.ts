@@ -1,10 +1,10 @@
-import { describe, expect, it } from "vitest";
-import { Mapping } from "../../src/mapping/mapping";
-import { Text } from "../../src/text";
+import { describe, expect, it } from 'vitest';
+import { Mapping } from '../../src/mapping/mapping';
+import { Text } from '../../src/text';
 
 function makeMapping(): { mapping: Mapping; a: Text; b: Text } {
-  const a = new Text("A");
-  const b = new Text("B");
+  const a = new Text('A');
+  const b = new Text('B');
   const mapping = new Mapping(
     [a, b],
     {
@@ -17,8 +17,8 @@ function makeMapping(): { mapping: Mapping; a: Text; b: Text } {
   return { mapping, a, b };
 }
 
-describe("Mapping", () => {
-  it("scales width/height/bounds by ratio", () => {
+describe('Mapping', () => {
+  it('scales width/height/bounds by ratio', () => {
     const { mapping, a } = makeMapping();
     expect(mapping.width).toBe(100);
     expect(mapping.height).toBe(100);
@@ -29,14 +29,14 @@ describe("Mapping", () => {
     expect(mapping.boundsForText(a)).toEqual({ x: 0, y: 120, w: 200, h: 80 });
   });
 
-  it("falsy ratio resets to 1", () => {
+  it('falsy ratio resets to 1', () => {
     const { mapping } = makeMapping();
     mapping.ratio = 0;
     expect(mapping.ratio).toBe(1);
   });
 
-  it("returns undefined bounds for unknown text", () => {
+  it('returns undefined bounds for unknown text', () => {
     const { mapping } = makeMapping();
-    expect(mapping.boundsForText(new Text("other"))).toBeUndefined();
+    expect(mapping.boundsForText(new Text('other'))).toBeUndefined();
   });
 });

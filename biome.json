@@ -21,7 +21,8 @@
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "double"
+      "quoteStyle": "single",
+      "trailingCommas": "all"
     }
   },
   "assist": {

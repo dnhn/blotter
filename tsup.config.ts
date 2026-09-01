@@ -1,15 +1,15 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: {
-    index: "src/index.ts",
-    materials: "src/materials/index.ts",
+    index: 'src/index.ts',
+    materials: 'src/materials/index.ts',
   },
-  format: ["esm", "cjs"],
+  format: ['esm', 'cjs'],
   dts: true,
   sourcemap: true,
   clean: true,
-  target: "es2020",
-  external: ["three"],
+  target: 'es2020',
+  external: ['three'],
   treeshake: true,
 });

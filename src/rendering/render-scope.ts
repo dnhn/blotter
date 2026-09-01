@@ -1,23 +1,23 @@
-import type { Blotter } from "../blotter";
-import { Emitter } from "../core/event-emitter";
+import type { Blotter } from '../blotter';
+import { Emitter } from '../core/event-emitter';
 import {
   UniformInterface,
   type UniformInterfaceMap,
-} from "../core/uniform-interface";
-import type { MappingMaterial } from "../mapping/mapping-material";
-import type { Text } from "../text";
+} from '../core/uniform-interface';
+import type { MappingMaterial } from '../mapping/mapping-material';
+import type { Text } from '../text';
 import {
   createHiDpiCanvas,
   type MousePosition,
   normalizedMousePosition,
   updateCanvasSize,
-} from "../utils/canvas";
+} from '../utils/canvas';
 
 export type RenderScopeEvents = {
   ready: [];
   update: [];
   render: [frameCount: number];
-  "update:uniform": [uniformName: string];
+  'update:uniform': [uniformName: string];
   mousedown: [position: MousePosition];
   mouseup: [position: MousePosition];
   mousemove: [position: MousePosition];
@@ -26,11 +26,11 @@ export type RenderScopeEvents = {
 };
 
 const MOUSE_EVENTS = [
-  "mousedown",
-  "mouseup",
-  "mousemove",
-  "mouseenter",
-  "mouseleave",
+  'mousedown',
+  'mouseup',
+  'mousemove',
+  'mouseenter',
+  'mouseleave',
 ] as const;
 
 interface ScopeBounds {
@@ -76,10 +76,10 @@ export class RenderScope extends Emitter<RenderScopeEvents> {
     };
 
     this.domElement = createHiDpiCanvas(0, 0, blotter.ratio, {
-      className: "b-canvas",
+      className: 'b-canvas',
     });
     this.domElement.textContent = text.value;
-    this.context = this.domElement.getContext("2d");
+    this.context = this.domElement.getContext('2d');
   }
 
   /**
@@ -108,7 +108,7 @@ export class RenderScope extends Emitter<RenderScopeEvents> {
     this.material.mainImage = mappingMaterial.mainImage;
     this.transferInterfaceValues(previousUniforms, this.material.uniforms);
 
-    this.emit(this.lastUpdated ? "update" : "ready");
+    this.emit(this.lastUpdated ? 'update' : 'ready');
     this.lastUpdated = Date.now();
   }
 
@@ -136,7 +136,7 @@ export class RenderScope extends Emitter<RenderScopeEvents> {
     // lands at the canvas origin.
     this.context.putImageData(imageData, this.bounds.x, this.bounds.y);
 
-    this.emit("render", this.frameCount);
+    this.emit('render', this.frameCount);
   }
 
   appendTo(element: Element): this {
@@ -177,11 +177,11 @@ export class RenderScope extends Emitter<RenderScopeEvents> {
     for (const [uniformName, source] of Object.entries(uniforms)) {
       const uniformInterface = new UniformInterface(
         source.toDescriptor(),
-        "RenderScope",
+        'RenderScope',
       );
       this.uniformUnsubscribers.push(
-        uniformInterface.on("update", () =>
-          this.emit("update:uniform", uniformName),
+        uniformInterface.on('update', () =>
+          this.emit('update:uniform', uniformName),
         ),
       );
       interfaces[uniformName] = uniformInterface;

@@ -14,11 +14,11 @@ export interface TextProperties {
 }
 
 export const DEFAULT_TEXT_PROPERTIES: TextProperties = {
-  family: "sans-serif",
+  family: 'sans-serif',
   size: 12,
   leading: 1.5,
-  fill: "#000",
-  style: "normal",
+  fill: '#000',
+  style: 'normal',
   weight: 400,
   padding: 0,
   paddingTop: 0,
@@ -50,13 +50,13 @@ export function lineHeightPixels(
   size: number,
   leading: number | string = DEFAULT_TEXT_PROPERTIES.leading,
 ): number {
-  if (typeof leading === "number") {
+  if (typeof leading === 'number') {
     return size * leading;
   }
-  if (leading.includes("px")) {
+  if (leading.includes('px')) {
     return Number.parseInt(leading, 10);
   }
-  if (leading.includes("%")) {
+  if (leading.includes('%')) {
     return (Number.parseInt(leading, 10) / 100) * size;
   }
   const numeric = Number.parseFloat(leading);
@@ -75,20 +75,20 @@ export function sizeForText(
   properties: Partial<TextProperties> = {},
 ): TextSize {
   const p = ensurePropertyValues(properties);
-  const el = document.createElement("span");
+  const el = document.createElement('span');
 
   el.textContent = textValue;
-  el.style.display = "inline-block";
+  el.style.display = 'inline-block';
   el.style.fontFamily = p.family;
   el.style.fontSize = `${p.size}px`;
   el.style.fontWeight = String(p.weight);
   el.style.fontStyle = p.style;
   el.style.lineHeight = String(p.leading);
-  el.style.maxWidth = "none";
+  el.style.maxWidth = 'none';
   el.style.padding = stringifiedPadding(p);
-  el.style.position = "absolute";
-  el.style.width = "auto";
-  el.style.visibility = "hidden";
+  el.style.position = 'absolute';
+  el.style.width = 'auto';
+  el.style.visibility = 'hidden';
 
   document.body.appendChild(el);
   const size: TextSize = { w: el.offsetWidth, h: el.offsetHeight };

@@ -1,5 +1,5 @@
-import { Material } from "../material";
-import { lineMath, pi, random } from "../shaders";
+import { Material } from '../material';
+import { lineMath, pi, random } from '../shaders';
 
 const mainImage = /* glsl */ `
 ${pi}
@@ -110,10 +110,10 @@ export class ChannelSplitMaterial extends Material {
     super({
       mainImage,
       uniforms: {
-        uOffset: { type: "1f", value: 0.05 },
-        uRotation: { type: "1f", value: 45 },
-        uApplyBlur: { type: "1f", value: 1 },
-        uAnimateNoise: { type: "1f", value: 1 },
+        uOffset: { type: '1f', value: 0.05 },
+        uRotation: { type: '1f', value: 45 },
+        uApplyBlur: { type: '1f', value: 1 },
+        uAnimateNoise: { type: '1f', value: 1 },
       },
     });
   }

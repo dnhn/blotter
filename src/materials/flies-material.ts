@@ -1,5 +1,5 @@
-import { Material } from "../material";
-import { random } from "../shaders";
+import { Material } from '../material';
+import { random } from '../shaders';
 
 const mainImage = /* glsl */ `
 ${random}
@@ -77,12 +77,12 @@ export class FliesMaterial extends Material {
     super({
       mainImage,
       uniforms: {
-        uPointCellWidth: { type: "1f", value: 0.04 },
-        uPointRadius: { type: "1f", value: 0.75 },
-        uDodge: { type: "1f", value: 0 },
-        uDodgePosition: { type: "2f", value: [0.5, 0.5] },
-        uDodgeSpread: { type: "1f", value: 0.25 },
-        uSpeed: { type: "1f", value: 1 },
+        uPointCellWidth: { type: '1f', value: 0.04 },
+        uPointRadius: { type: '1f', value: 0.75 },
+        uDodge: { type: '1f', value: 0 },
+        uDodgePosition: { type: '2f', value: [0.5, 0.5] },
+        uDodgeSpread: { type: '1f', value: 0.25 },
+        uSpeed: { type: '1f', value: 1 },
       },
     });
   }

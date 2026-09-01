@@ -3,7 +3,7 @@ function formatMessage(
   method: string | undefined,
   message: string,
 ): string {
-  return `${domain}${method ? `#${method}` : ""}: ${message}`;
+  return `${domain}${method ? `#${method}` : ''}: ${message}`;
 }
 
 export class BlotterError extends Error {
@@ -12,7 +12,7 @@ export class BlotterError extends Error {
 
   constructor(domain: string, method: string | undefined, message: string) {
     super(formatMessage(domain, method, message));
-    this.name = "BlotterError";
+    this.name = 'BlotterError';
     this.domain = domain;
     this.method = method;
   }

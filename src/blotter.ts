@@ -1,15 +1,15 @@
-import { buildMapping } from "./builders/mapping-builder";
-import { buildMappingMaterial } from "./builders/mapping-material-builder";
-import { BlotterError, logError } from "./core/errors";
-import { Emitter } from "./core/event-emitter";
-import type { TextBounds } from "./mapping/mapping";
-import type { MappingMaterial } from "./mapping/mapping-material";
-import { Material } from "./material";
-import { RenderScope } from "./rendering/render-scope";
-import { Renderer } from "./rendering/renderer";
-import { isWebGLSupported } from "./rendering/webgl";
-import { filterTexts, type Text } from "./text";
-import { pixelRatio } from "./utils/canvas";
+import { buildMapping } from './builders/mapping-builder';
+import { buildMappingMaterial } from './builders/mapping-material-builder';
+import { BlotterError, logError } from './core/errors';
+import { Emitter } from './core/event-emitter';
+import type { TextBounds } from './mapping/mapping';
+import type { MappingMaterial } from './mapping/mapping-material';
+import { Material } from './material';
+import { RenderScope } from './rendering/render-scope';
+import { Renderer } from './rendering/renderer';
+import { isWebGLSupported } from './rendering/webgl';
+import { filterTexts, type Text } from './text';
+import { pixelRatio } from './utils/canvas';
 
 export type BlotterEvents = { ready: []; update: []; render: [] };
 
@@ -59,9 +59,9 @@ export class Blotter extends Emitter<BlotterEvents> {
     super();
     if (!isWebGLSupported()) {
       throw new BlotterError(
-        "Blotter",
+        'Blotter',
         undefined,
-        "device does not support webgl",
+        'device does not support webgl',
       );
     }
 
@@ -77,11 +77,11 @@ export class Blotter extends Emitter<BlotterEvents> {
     this.setMaterial(material);
     this.addTexts(options.texts ?? []);
 
-    this.renderer.on("render", () => this.onRendered());
+    this.renderer.on('render', () => this.onRendered());
 
     if (this.autobuild) {
       this.update().catch((error) => {
-        logError("Blotter", "update", String(error));
+        logError('Blotter', 'update', String(error));
       });
     }
     if (this.autostart) {
@@ -108,19 +108,19 @@ export class Blotter extends Emitter<BlotterEvents> {
   setMaterial(material: Material): void {
     if (!(material instanceof Material)) {
       throw new BlotterError(
-        "Blotter",
-        "setMaterial",
-        "argument must be an instance of Material",
+        'Blotter',
+        'setMaterial',
+        'argument must be an instance of Material',
       );
     }
 
     for (const unsubscribe of this.materialUnsubscribers) unsubscribe();
     this._material = material;
     this.materialUnsubscribers = [
-      material.on("update", () => {
+      material.on('update', () => {
         void this.update();
       }),
-      material.on("update:uniform", (uniformName) =>
+      material.on('update:uniform', (uniformName) =>
         this.updateUniformValue(uniformName),
       ),
     ];
@@ -141,10 +141,10 @@ export class Blotter extends Emitter<BlotterEvents> {
       this.scopes[text.id] = scope;
 
       this.textUnsubscribers[text.id] = [
-        text.on("update", () => {
+        text.on('update', () => {
           void this.update();
         }),
-        scope.on("update:uniform", (uniformName) =>
+        scope.on('update:uniform', (uniformName) =>
           this.updateTextUniformValue(text.id, uniformName),
         ),
       ];
@@ -217,7 +217,7 @@ export class Blotter extends Emitter<BlotterEvents> {
   forText(text: Text): RenderScope | undefined {
     const scope = this.scopes[text.id];
     if (!scope) {
-      logError("Blotter", "forText", "Text object not found in blotter");
+      logError('Blotter', 'forText', 'Text object not found in blotter');
       return undefined;
     }
     return scope;
@@ -225,7 +225,7 @@ export class Blotter extends Emitter<BlotterEvents> {
 
   boundsForText(text: Text): TextBounds | undefined {
     if (!this.scopes[text.id]) {
-      logError("Blotter", "boundsForText", "Text object not found in blotter");
+      logError('Blotter', 'boundsForText', 'Text object not found in blotter');
       return undefined;
     }
     return this.mappingMaterial?.boundsForText(text);
@@ -253,9 +253,9 @@ export class Blotter extends Emitter<BlotterEvents> {
     }
 
     if (this.lastUpdated) {
-      this.emit("update");
+      this.emit('update');
     } else {
-      this.emit("ready");
+      this.emit('ready');
       this.resolveReady(this);
     }
     this.lastUpdated = Date.now();
@@ -279,7 +279,7 @@ export class Blotter extends Emitter<BlotterEvents> {
         scope.render();
       }
     }
-    this.emit("render");
+    this.emit('render');
   }
 
   private updateUniformValue(uniformName: string): void {

@@ -1,11 +1,11 @@
-import { describe, expect, it } from "vitest";
-import { buildMapping } from "../../src/builders/mapping-builder";
-import { Text } from "../../src/text";
+import { describe, expect, it } from 'vitest';
+import { buildMapping } from '../../src/builders/mapping-builder';
+import { Text } from '../../src/text';
 
-describe("buildMapping", () => {
-  it("packs two texts into non-overlapping bounds", async () => {
-    const a = new Text("Hello", { family: "monospace", size: 30 });
-    const b = new Text("World!", { family: "monospace", size: 20 });
+describe('buildMapping', () => {
+  it('packs two texts into non-overlapping bounds', async () => {
+    const a = new Text('Hello', { family: 'monospace', size: 30 });
+    const b = new Text('World!', { family: 'monospace', size: 20 });
     const mapping = await buildMapping([a, b]);
 
     expect(mapping.width).toBeGreaterThan(0);
@@ -25,16 +25,16 @@ describe("buildMapping", () => {
     expect(overlaps).toBe(false);
   });
 
-  it("toCanvas renders non-blank pixels where text was drawn", async () => {
-    const text = new Text("Hello", {
-      family: "monospace",
+  it('toCanvas renders non-blank pixels where text was drawn', async () => {
+    const text = new Text('Hello', {
+      family: 'monospace',
       size: 40,
-      fill: "#ff0000",
+      fill: '#ff0000',
     });
     const mapping = await buildMapping(text);
     const canvas = mapping.toCanvas();
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     expect(ctx).toBeTruthy();
     if (!ctx) return;
 
