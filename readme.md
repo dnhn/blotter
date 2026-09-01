@@ -102,7 +102,7 @@ export class WobbleMaterial extends Material {
 
 `blotter.ts/materials` ships the classic Blotter effects: `ChannelSplitMaterial`, `FliesMaterial`, `LiquidDistortMaterial`, `RollingDistortMaterial`, `SlidingDoorMaterial`.
 
-## Migrating from Blotter 0.1
+## Migrating from Blotter.js
 
 | Legacy | Now |
 | --- | --- |
