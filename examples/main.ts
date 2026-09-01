@@ -1,11 +1,11 @@
-import { Blotter, Material, Text } from "blotter-ts";
+import { Blotter, Material, Text } from "blotter.ts";
 import {
   ChannelSplitMaterial,
   FliesMaterial,
   LiquidDistortMaterial,
   RollingDistortMaterial,
   SlidingDoorMaterial,
-} from "blotter-ts/materials";
+} from "blotter.ts/materials";
 
 const app = document.getElementById("app");
 if (!app) throw new Error("#app missing");

@@ -7,10 +7,10 @@ export default defineConfig({
   root: "examples",
   resolve: {
     alias: {
-      "blotter-ts/materials": fileURLToPath(
+      "blotter.ts/materials": fileURLToPath(
         new URL("./src/materials/index.ts", import.meta.url),
       ),
-      "blotter-ts": fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+      "blotter.ts": fileURLToPath(new URL("./src/index.ts", import.meta.url)),
     },
   },
 });

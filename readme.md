@@ -1,4 +1,4 @@
-# blotter-ts
+# blotter.ts
 
 A JavaScript API for drawing unconventional text effects on the web — GLSL-backed, batched into a single WebGL draw call, output to plain per-text canvases.
 
@@ -14,7 +14,7 @@ This is a modern TypeScript rewrite of [bradley/Blotter](https://github.com/brad
 ## Install
 
 ```sh
-npm install blotter-ts three
+npm install blotter.ts three
 ```
 
 `three >= 0.152` is a peer dependency.
@@ -22,8 +22,8 @@ npm install blotter-ts three
 ## Usage
 
 ```ts
-import { Blotter, Text } from "blotter-ts";
-import { ChannelSplitMaterial } from "blotter-ts/materials";
+import { Blotter, Text } from "blotter.ts";
+import { ChannelSplitMaterial } from "blotter.ts/materials";
 
 const text = new Text("Hello", {
   family: "serif",
@@ -66,7 +66,7 @@ await blotter.update();         // explicit rebuild; resolves when settled
 A material is a Shadertoy-style `mainImage` fragment function. Use `textTexture(uv)` instead of `texture2D` to sample the text:
 
 ```ts
-import { Material, shaders } from "blotter-ts";
+import { Material, shaders } from "blotter.ts";
 
 const wobble = new Material({
   mainImage: /* glsl */ `
@@ -89,7 +89,7 @@ Uniform types are `"1f" | "2f" | "3f" | "4f"` (float/vec2/vec3/vec4). Every mate
 Or subclass:
 
 ```ts
-import { Material } from "blotter-ts";
+import { Material } from "blotter.ts";
 
 export class WobbleMaterial extends Material {
   constructor() {
@@ -100,18 +100,18 @@ export class WobbleMaterial extends Material {
 
 ### Bundled materials
 
-`blotter-ts/materials` ships the classic Blotter effects: `ChannelSplitMaterial`, `FliesMaterial`, `LiquidDistortMaterial`, `RollingDistortMaterial`, `SlidingDoorMaterial`.
+`blotter.ts/materials` ships the classic Blotter effects: `ChannelSplitMaterial`, `FliesMaterial`, `LiquidDistortMaterial`, `RollingDistortMaterial`, `SlidingDoorMaterial`.
 
 ## Migrating from Blotter 0.1
 
 | Legacy | Now |
 | --- | --- |
-| `<script>` + `window.Blotter.*` globals | Named ESM imports from `blotter-ts` |
-| Separate material `<script>` downloads | `import { ChannelSplitMaterial } from "blotter-ts/materials"` |
+| `<script>` + `window.Blotter.*` globals | Named ESM imports from `blotter.ts` |
+| Separate material `<script>` downloads | `import { ChannelSplitMaterial } from "blotter.ts/materials"` |
 | `new Blotter.Text(...)`, `new Blotter.Material()` | `new Text(...)`, `new Material()` |
 | `thing.needsUpdate = true` | `blotter.update()` / `material.update()` / automatic on `text.value =` |
 | `blotter.on("ready", ...)` | `await blotter.ready` (the event still fires) |
-| `Blotter.Assets.Shaders.PI` | `import { shaders } from "blotter-ts"` → `shaders.pi` |
+| `Blotter.Assets.Shaders.PI` | `import { shaders } from "blotter.ts"` → `shaders.pi` |
 | `Blotter._extendWithGettersSetters` subclass protocol | `class MyMaterial extends Material` |
 | Bundled underscore/EventEmitter/Three custom build | Gone; `three` is a peer dependency |
 
