@@ -1,5 +1,11 @@
 # blotter.ts
 
+## 1.0.1
+
+### Patch Changes
+
+- Add `@types/node` as a devDependency so `pnpm typecheck` passes against `vite.config.ts`. No runtime or API change.
+
 ## 1.0.0
 
 ### Major Changes
