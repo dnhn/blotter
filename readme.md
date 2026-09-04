@@ -1,6 +1,6 @@
 # blotter.ts
 
-A JavaScript API for drawing unconventional text effects on the web — GLSL-backed, batched into a single WebGL draw call, output to plain per-text canvases.
+A JavaScript API for drawing unconventional text effects on the web, GLSL-backed, batched into a single WebGL draw call, output to plain per-text canvases.
 
 This is a modern TypeScript rewrite of [bradley/Blotter](https://github.com/bradley/Blotter): ESM-first, typed, tree-shakeable, with `three` as a peer dependency. The rendering architecture is unchanged; the API is new (see [Migrating](#migrating-from-blotterjs)).
 
@@ -9,7 +9,7 @@ This is a modern TypeScript rewrite of [bradley/Blotter](https://github.com/brad
 - Texts sharing a material are measured, bin-packed into a single texture atlas, and rendered together in one WebGL draw call through your material's fragment shader.
 - Each text gets its own output `<canvas>` (via `blotter.forText(text)`), which copies its region out of the shared back buffer every frame.
 - The render loop uses `requestAnimationFrame` and a single shared WebGL context regardless of how many Blotter instances exist.
-- Rendered text is canvas output: not selectable, best for titles, headings, and graphic text — not body copy.
+- Rendered text is canvas output: not selectable, best for titles, headings, and graphic text, not body copy.
 
 ## Install
 
@@ -40,7 +40,7 @@ await blotter.ready;
 
 ### Uniforms
 
-Material uniforms are live — writing a value updates the running shader:
+Material uniforms are live, writing a value updates the running shader:
 
 ```ts
 material.uniforms.uOffset.value = 0.1;
